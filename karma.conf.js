@@ -13,7 +13,7 @@ module.exports = function (config) {
 
     logLevel: config.LOG_INFO,
 
-    browsers: ['Firefox'],
+    browsers: ['PhantomJS'],
 
     captureTimeout: 60000,
 
@@ -25,9 +25,7 @@ module.exports = function (config) {
 
     plugins: [
       'karma-jasmine',
-      //'karma-phantomjs-launcher',
-      'karma-chrome-launcher',
-      'karma-firefox-launcher',
+      'karma-phantomjs-launcher',
       'karma-coverage',
       'karma-ng-html2js-preprocessor',
       'karma-spec-reporter'
@@ -47,8 +45,7 @@ module.exports = function (config) {
       // app core dependencies
       'node_modules/jquery/dist/jquery.js',
       'test/test-helper.js',
-      'node_modules/ui-core/lib/content/js/angular.js',
-      'node_modules/ui-core/lib/content/js/main.js',
+      'node_modules/angular/angular.min.js',
       'node_modules/lodash/dist/lodash.min.js',
       'node_modules/d3/d3.min.js',
       'test/angular-mocks.js',
@@ -73,7 +70,7 @@ module.exports = function (config) {
 
     ngHtml2JsPreprocessor: {
       // immitates ui-core
-      prependPrefix: '/$iui-alerts',
+      prependPrefix: '/$iui-charts',
       stripPrefix: 'lib/src',
       moduleName: 'templates'
     },
