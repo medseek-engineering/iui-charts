@@ -1,0 +1,113 @@
+.container-fluid {
+  max-width: 1000px;
+}
+
+.chart {
+  display: block;
+  // > svg {
+  //   overflow: visible;
+  // }
+}
+
+// .bar {
+//   fill: map-get($sg_normalcy_ranges, undefined);
+//   transition: all 200ms ease-in-out;
+// }
+
+// @each $range, $color in $sg_normalcy_ranges {
+//   .normalcy-#{$range} {
+//     fill: $color;
+//   }
+// }
+
+.path {
+  fill: none;
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.tick {
+  > text {
+    font-size: 12px;
+    fill: $sg_light_grey;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+  }
+  // &:nth-of-type(even) {
+  //   > text {
+  //     display: none;
+  //   }
+  // }
+  > line {
+    stroke: $sg_light_grey;
+    stroke-width: 1;
+  }
+}
+
+.ticks-large {
+  > .domain {
+    stroke-width: 1;
+    stroke: $sg_light_grey;
+  }
+}
+
+.path-systolic {
+  stroke: $sg_bashful_blue;
+}
+
+.path-diastolic {
+  stroke: $sg_teal_primary;
+}
+
+.circle{
+  r: 10;
+}
+
+.line {
+  stroke-width: 1;
+  opacity: 0;
+}
+
+.circle-systolic {
+  fill: $sg_bashful_blue;
+}
+
+.circle-diastolic {
+  fill: $sg_teal_primary;
+}
+
+.path-weight {
+  stroke: $sg_organic_orange;
+}
+
+.circle-weight {
+  fill: $sg_organic_orange;
+}
+
+.circle-tasks {
+  fill: $sg_gamma_green;
+}
+
+.line-tasks {
+  stroke: $sg_gamma_green;
+}
+
+.line-encounter {
+  stroke: $sg_rosy_red;
+}
+
+.circle-encounter {
+  fill: $sg_rosy_red;
+}
+
+.circle-medications {
+  fill: $sg_prairie_purple;
+}
+
+.line-medications {
+  stroke: $sg_prairie_purple;
+}
+
+.chart-overlay {
+  stroke-width: 0px;
+  fill-opacity: 0;
+}
