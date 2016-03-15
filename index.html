@@ -216,7 +216,7 @@
         updateData();
 
         function updateData() {
-          healthInformation.data = healthInformationData;
+          healthInformation.data = angular.copy(healthInformationData);
         }
 
       }
@@ -241,6 +241,7 @@
         chart-data="chartController.healthInformation.data">
       </iui-chart>
       <button class="btn btn-default" ng-click="chartController.updateData()">update data</button>
+      <button class="btn btn-default" ng-click="chartController.healthInformation.data.splice(0,1)">delete entries</button>
 		</div>
     <svg class="symbol-defs">
       <defs>
