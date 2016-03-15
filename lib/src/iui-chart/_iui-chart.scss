@@ -21,9 +21,7 @@ $graphColors: (
 // styling charts based on index
 @each $range, $color in $graphColors {
   .metric-index-#{$range} {
-    > .chart-circle {
-      fill: $color;
-    }
+    > .chart-circle,
     > .chart-icon {
       fill: $color;
     }
