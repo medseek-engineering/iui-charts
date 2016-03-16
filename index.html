@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iui-charts</title>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.13/angular.min.js"></script>
     <script src="lib/dist/iui-charts.js"></script>
@@ -241,8 +241,10 @@
         chart-data="chartController.healthInformation.data">
       </iui-chart>
       <button class="btn btn-default" ng-click="chartController.updateData()">update data</button>
+      <button class="btn btn-default" ng-click="chartController.healthInformation.data[0].Records[0].systolic = chartController.healthInformation.data[0].Records[0].systolic + 10">change data</button>
       <button class="btn btn-default" ng-click="chartController.healthInformation.data.splice(0,1)">delete entries</button>
 		</div>
+    <pre>{{chartController.healthInformation.data | json}}</pre>
     <svg class="symbol-defs">
       <defs>
         <filter id="dropShadow">

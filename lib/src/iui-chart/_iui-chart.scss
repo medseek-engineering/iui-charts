@@ -20,12 +20,15 @@ $graphColors: (
 
 // styling charts based on index
 @each $range, $color in $graphColors {
-  .metric-index-#{$range} {
-    > .chart-circle,
-    > .chart-icon {
+  
+  use, circle {
+    &.metric-element-#{$range} {
       fill: $color;
     }
-    > .chart-path {
+  }
+
+  path {
+    &.metric-element-#{$range} {
       stroke: $color;
     }
   }
