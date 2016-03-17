@@ -21,12 +21,22 @@
         },
         displayFields: [
           {
+            key: 'bloodGlucose',
+            metricProperties: ['glucose'],
+            type: 'trend'
+          },
+          {
             key: 'medications',
             type: 'event'
           },
           {
             key: 'weights',
             metricProperties: ['weight'],
+            type: 'trend'
+          },
+          {
+            key: 'cholesterol',
+            metricProperties: ['level'],
             type: 'trend'
           },
           {
@@ -61,11 +71,27 @@
               "active": "true",
               "exported": "false",
               "date": "2015-10-06T15:54:09",
-              "code": "2339-0",
-              "codeSystem": "LOINC_ALL",
-              "codeSystemName": "2.16.840.1.113883.6.1",
-              "codeSystemVersion": "",
               "glucose": 120,
+              "markAsPrivate": false,
+              "markedBy": "",
+              "isExternal": false
+            },
+            {
+              "id": "826",
+              "active": "true",
+              "exported": "false",
+              "date": "2015-11-06T15:54:09",
+              "glucose": 100,
+              "markAsPrivate": false,
+              "markedBy": "",
+              "isExternal": false
+            },
+            {
+              "id": "827",
+              "active": "true",
+              "exported": "false",
+              "date": "2015-12-06T15:54:09",
+              "glucose": 105,
               "markAsPrivate": false,
               "markedBy": "",
               "isExternal": false
@@ -206,6 +232,31 @@
             },
             {
               'date': '2016-01-12T15:55:17'
+            }
+          ]
+        },
+        {
+          Key: 'cholesterol',
+          Records:[
+            {
+              "id": "826",
+              "active": "true",
+              "exported": "false",
+              "date": "2015-10-06T15:54:37",
+              "hdl": "120",
+              "ldl": "25",
+              "tryglicerides": "25",
+              "level": 150
+            },
+            {
+              "id": "1193",
+              "active": "true",
+              "exported": "false",
+              "date": "2015-10-16T13:37:56",
+              "hdl": "150",
+              "ldl": "150",
+              "tryglicerides": "150",
+              "level": 330
             }
           ]
         },
