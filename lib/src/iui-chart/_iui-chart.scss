@@ -6,7 +6,7 @@
   display: block;
 }
 
-$graphColors: (
+$metricElements: (
   1: $sg_bashful_blue,
   2: $sg_teal_primary,
   3: $sg_organic_orange,
@@ -19,18 +19,12 @@ $graphColors: (
 );
 
 // styling charts based on index
-@each $range, $color in $graphColors {
-  
-  use, circle {
-    &.metric-element-#{$range} {
-      fill: $color;
-    }
+@each $elementNumber, $color in $metricElements {
+  .metric-element-#{$elementNumber}-event {
+    fill: $color;
   }
-
-  path {
-    &.metric-element-#{$range} {
-      stroke: $color;
-    }
+  .metric-element-#{$elementNumber}-trend {
+    stroke: $color;
   }
 }
 
