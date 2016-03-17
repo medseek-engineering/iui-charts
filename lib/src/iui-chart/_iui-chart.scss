@@ -35,7 +35,7 @@ $metricElements: (
   > text {
     font-size: 10px;
     fill: $sg_light_grey;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-family: $base-font-family;
   }
   > line {
     stroke: $sg_light_grey;
