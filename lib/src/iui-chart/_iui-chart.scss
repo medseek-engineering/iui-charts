@@ -60,10 +60,11 @@ $metricElements: (
   opacity: 1;
 }
 
-.chart-circle,
-.chart-icon {
-  filter: url(#chart_dropShadow);
-}
+// turning off shadow for now
+// .chart-circle,
+// .chart-icon {
+//   filter: url(#chart_dropShadow);
+// }
 
 .chart-line {
   stroke-width: 1;
