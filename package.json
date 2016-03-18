@@ -61,7 +61,7 @@
       "iui-general"
     ],
     "createTemplates": {
-      "moduleName": "iui.charts",
+      "moduleName": "iui.chartTemplates",
       "prefix": "/$iui-charts/",
       "templateFile": "iui-chart-templates.js"
     },

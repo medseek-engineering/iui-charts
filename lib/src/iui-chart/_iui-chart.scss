@@ -1,42 +1,42 @@
-.container-fluid {
-  max-width: 1000px;
+.symbol-defs {
+  display: none;
 }
 
 .chart {
   display: block;
-  // > svg {
-  //   overflow: visible;
-  // }
 }
 
-// .bar {
-//   fill: map-get($sg_normalcy_ranges, undefined);
-//   transition: all 200ms ease-in-out;
-// }
+$metricElements: (
+  1: $sg_bashful_blue,
+  2: $sg_teal_primary,
+  3: $sg_organic_orange,
+  4: $sg_gamma_green,
+  5: $sg_rosy_red,
+  6: $sg_prairie_purple,
+  7: $sg_bold_blue,
+  8: $sg_yummy_yellow,
+  9: $sg_granny_smith_green
+);
 
-// @each $range, $color in $sg_normalcy_ranges {
-//   .normalcy-#{$range} {
-//     fill: $color;
-//   }
-// }
-
-.path {
-  fill: none;
-  stroke-width: 2;
-  opacity: 1;
+// styling charts based on index
+@each $elementNumber, $color in $metricElements {
+  .metric-element-#{$elementNumber}-event {
+    fill: $color;
+  }
+  .metric-element-#{$elementNumber}-trend {
+    stroke: $color;
+  }
 }
+
+
+// axis
 
 .tick {
   > text {
-    font-size: 12px;
+    font-size: 10px;
     fill: $sg_light_grey;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-family: $base-font-family;
   }
-  // &:nth-of-type(even) {
-  //   > text {
-  //     display: none;
-  //   }
-  // }
   > line {
     stroke: $sg_light_grey;
     stroke-width: 1;
@@ -50,64 +50,30 @@
   }
 }
 
-.path-systolic {
-  stroke: $sg_bashful_blue;
+
+
+// chart elements
+
+.chart-path {
+  fill: none;
+  stroke-width: 2;
+  opacity: 1;
 }
 
-.path-diastolic {
-  stroke: $sg_teal_primary;
-}
+// turning off shadow for now
+// .chart-circle,
+// .chart-icon {
+//   filter: url(#chart_dropShadow);
+// }
 
-.circle{
-  r: 10;
-}
-
-.line {
+.chart-line {
   stroke-width: 1;
   opacity: 0;
-}
-
-.circle-systolic {
-  fill: $sg_bashful_blue;
-}
-
-.circle-diastolic {
-  fill: $sg_teal_primary;
-}
-
-.path-weight {
-  stroke: $sg_organic_orange;
-}
-
-.circle-weight {
-  fill: $sg_organic_orange;
-}
-
-.circle-tasks {
-  fill: $sg_gamma_green;
-}
-
-.line-tasks {
-  stroke: $sg_gamma_green;
-}
-
-.line-encounter {
-  stroke: $sg_rosy_red;
-}
-
-.circle-encounter {
-  fill: $sg_rosy_red;
-}
-
-.circle-medications {
-  fill: $sg_prairie_purple;
-}
-
-.line-medications {
-  stroke: $sg_prairie_purple;
 }
 
 .chart-overlay {
   stroke-width: 0px;
   fill-opacity: 0;
 }
+
+
