@@ -308,12 +308,90 @@
 
   function ExampleController(healthInformation) {
     var vm = this;
-    vm.healthInformation = healthInformation;
-    vm.updateData = updateData;
-    updateData();
+    var fromDate          = '2016-01-01';
+    var toDate            = '2016-01-15';
+    vm.healthInformation  = healthInformation;
+    vm.resetData          = resetData;
+    vm.changeDateForm     = changeDateForm;
+    vm.changeDate         = changeDate;
+    vm.changeData         = changeData;
+    vm.showAll            = showAll;
 
-    function updateData() {
+    resetData();
+
+    vm.dateRangeForm = {
+      from : fromDate,
+      to   : toDate
+    };
+
+    vm.dateRange = {
+      from : new Date(fromDate),
+      to   : new Date(toDate)
+    };
+
+    function resetData() {
       healthInformation.data = angular.copy(healthInformationData);
+    }
+
+    function changeDateForm(dateRangeForm) {
+      if (dateRangeForm && dateRangeForm.from) {
+        vm.dateRange.from = new Date(dateRangeForm.from);
+      }
+      if (dateRangeForm && dateRangeForm.to) {
+        vm.dateRange.to = new Date(dateRangeForm.to);
+      }
+    }
+
+    function changeDate(amount, unit) {
+      var today = moment();
+      var newFromDate = moment(today).subtract(amount, unit);
+      vm.dateRange = {
+        from : newFromDate.format(),
+        to   : today.format()
+      };
+      vm.dateRangeForm = {
+        from : newFromDate.format('Y-MM-DD'),
+        to   : today.format('Y-MM-DD')
+      };
+    }
+
+    function showAll() {
+      vm.dateRange = {
+        from : '',
+        to   : ''
+      };
+      vm.dateRangeForm = {
+        from : '',
+        to   : ''
+      };
+    }
+
+    function changeData() {
+      if (!healthInformation.data) {
+        return;
+      }
+
+      healthInformation.data.forEach(function(datum) {
+
+        var displayData = _.findWhere(healthInformation.displayFields, {key: datum.Key });
+        datum.Records.forEach(function(record) {
+
+          var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+
+          record.date = moment(record.date).add(_.random(0, 10) * plusOrMinus, 'days')
+
+          if (displayData.metricProperties) {
+            displayData.metricProperties.forEach(function(metricProperty) {
+
+              var plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
+              record[metricProperty] = record[metricProperty] + (_.random(0, 10) * plusOrMinus2);
+            })
+          }
+
+        });
+
+      });
+
     }
 
   }

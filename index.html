@@ -8,116 +8,86 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.13/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
     <script src="lib/dist/iui-charts.js"></script>
     <script src="demo/demo.js"></script>
-
     <link rel="stylesheet" href="lib/dist/iui-charts.css">
-    <style>
-      .container-fluid {
-        max-width: 1000px;
-      }
-      .chart-icon.metric-encounter-element {
-        fill: #E06666;
-      }
-    </style>
+    <link rel="stylesheet" href="demo/demo.css">
 	</head>
 	<body ng-app="app" ng-controller="ExampleController as chartController">
 		<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 form-group">
+          <div class="input-group">
+            <label class="input-group-addon" for="date_from">From</label>
+            <input
+              id="date_from"
+              class="form-control"
+              type="date"
+              ng-change="chartController.changeDateForm(chartController.dateRangeForm)"
+              ng-model="chartController.dateRangeForm.from"
+              placeholder="from">
+          </div>          
+        </div>
+        <div class="col-sm-3 form-group">
+          <div class="input-group">
+            <label class="input-group-addon" for="date_to">To</label>
+            <input
+              id="date_to"
+              class="form-control"
+              type="date"
+              ng-change="chartController.changeDateForm(chartController.dateRangeForm)"
+              ng-model="chartController.dateRangeForm.to"
+              placeholder="to">
+          </div>
+        </div>
+        <div class="col-md-5 form-group">
+          <button class="btn btn-default" ng-click="chartController.resetData()">Reset Data</button>
+          <button class="btn btn-default" ng-click="chartController.changeData()">Change Data</button>
+          <button class="btn btn-default" ng-click="chartController.healthInformation.data.splice(0,1)">Delete Entries</button>
+        </div>
+      </div>
 			<iui-chart 
+        date-range="chartController.dateRange"
         chart-settings="chartController.healthInformation.settings"
         display-fields="chartController.healthInformation.displayFields"
         chart-data="chartController.healthInformation.data">
       </iui-chart>
-      <button class="btn btn-default" ng-click="chartController.updateData()">update data</button>
-      <button class="btn btn-default" ng-click="chartController.healthInformation.data[0].Records[0].systolic = chartController.healthInformation.data[0].Records[0].systolic + 10">change data</button>
-      <button class="btn btn-default" ng-click="chartController.healthInformation.data.splice(0,1)">delete entries</button>
-		</div>
-    <pre>{{chartController.healthInformation.data | json}}</pre>
-    <svg class="symbol-defs">
-      <defs>
-        <filter id="dropShadow">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-          <feOffset dx="2" dy="4" />
-          <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      <symbol id="icon-medications" viewBox="0 0 640 640" >
-        <circle cx="320" cy="320" r="320"/>
-        <g>
-          <path fill="#FFFFFF" d="M321.96,448.8c22.56,19.681,52.319,31.2,84.48,31.2c30.239,0,64.319-16.8,86.399-33.6l-81.6-81.601
-            L321.96,448.8z"/>
-          <path fill="#FFFFFF" d="M485.16,246.24c-3.84,28.32-16.32,56.16-38.4,77.76l-24.479,26.88l83.52,82.08
-            c17.28-22.08,30.72-53.28,30.72-83.521C537,307.68,516.84,269.76,485.16,246.24z"/>
-          <path fill="#FFFFFF" d="M458.76,228c0-28.8-11.04-55.68-31.68-76.32c-20.64-20.64-47.52-31.68-76.32-31.68
-            c-28.8,0-55.68,11.04-76.32,31.68L136.68,289.44C116.04,309.6,105,336.96,105,365.76s11.04,55.681,31.68,76.32
-            c20.16,20.16,47.52,31.68,76.32,31.68s55.68-11.04,76.32-31.68l137.76-137.76C447.24,283.68,458.76,256.8,458.76,228z
-             M224.52,444.96l-22.08,5.28c-0.96,0-1.44,0.479-2.4,0.479c-4.8,0-9.12-3.359-10.08-8.16c-1.44-5.76,2.4-11.04,7.68-12.479
-            l22.08-5.28c5.76-1.439,11.04,2.4,12.48,7.681C233.64,437.76,230.28,443.52,224.52,444.96z M311.88,373.92l-44.64,44.64
-            c-1.92,1.921-4.8,2.881-7.2,2.881s-5.28-0.96-7.2-2.881c-4.32-4.319-4.32-10.56,0-14.88l44.64-44.64
-            c4.32-4.319,10.56-4.319,14.88,0C315.72,363.359,315.72,370.08,311.88,373.92z M343.08,358.08L220.2,235.2l69.12-69.12
-            c16.32-16.32,38.401-25.44,61.44-25.44c23.04,0,45.12,9.12,61.44,25.44c16.319,16.32,25.439,38.4,25.439,61.44
-            s-9.12,45.12-25.439,61.44L343.08,358.08z"/>
-        </g>
-      </symbol>
-      <symbol id="icon-encounter" viewBox="0 0 640 640" >
-        <circle cx="320" cy="320" r="320"/>
-        <g>
-          <path fill="#FFFFFF" d="M94.167,405.936c0,15.609,12.589,28.197,28.198,28.197h24.169c4.028-29.707,28.701-51.863,58.913-51.863
-            s54.885,22.156,58.913,51.36h90.636c4.027-29.204,28.701-51.36,58.912-51.36c30.212,0,54.886,22.156,58.913,51.36h45.821
-            c15.609,0,28.197-12.588,28.197-28.197v-36.759H94.167V405.936z"/>
-          <path fill="#FFFFFF" d="M538.28,304.223l-76.033-78.046c-6.545-6.546-15.608-10.574-24.672-10.574h-2.519l-13.594-13.596
-            c-6.547-6.546-15.107-10.071-24.171-10.071H121.358c-15.609,0-28.198,12.588-28.198,28.198l0.504,138.973h452.673V323.86
-            C546.337,316.308,543.315,309.258,538.28,304.223z M383.193,207.042c0-2.518,2.015-4.532,5.036-5.036
-            c7.049-0.503,21.147,0.503,32.226,16.113h-37.262V207.042z M247.24,280.558c0,4.028-3.524,7.553-7.553,7.553h-30.715v30.715
-            c0,4.028-3.525,7.553-7.553,7.553h-10.071c-4.028,0-7.553-3.524-7.553-7.553V288.11h-30.212c-4.027,0-7.553-3.524-7.553-7.553
-            v-10.071c0-4.028,3.525-7.553,7.553-7.553H184.3v-30.715c0-4.028,3.523-7.553,7.553-7.553h10.07c4.028,0,7.553,3.524,7.553,7.553
-            v30.715h30.715c4.029,0,7.554,3.525,7.554,7.553v10.071H247.24z M388.229,306.741c0,3.021-2.518,5.538-5.539,5.538h-54.885
-            c-3.021,0-5.539-2.518-5.539-5.538v-65.458c0-3.022,2.518-5.54,5.539-5.54h54.382c3.021,0,5.538,2.518,5.538,5.54v65.458H388.229z
-             M415.419,312.783c-4.531,0-8.056-3.525-8.056-8.056V242.29c0-3.525,3.021-6.546,6.545-6.546h20.143
-            c5.538,0,11.077,2.015,15.105,6.042l71.501,70.998H415.419z"/>
-          <path fill="#FFFFFF" d="M205.447,394.858c-25.68,0-46.828,21.147-46.828,46.829c0,25.679,21.148,46.827,46.828,46.827
-            s46.829-21.148,46.829-46.827C252.779,416.006,231.631,394.858,205.447,394.858z M205.447,419.531
-            c4.028,0,7.553,1.008,11.078,3.021l-11.078,15.105l-11.077-15.105C197.895,420.539,201.923,419.531,205.447,419.531z
-             M183.292,441.688c0-4.029,1.008-7.555,3.021-11.079l15.106,11.079l-15.106,11.077
-            C184.803,449.239,183.292,445.715,183.292,441.688z M205.447,463.842c-4.027,0-7.553-1.008-11.077-3.021l11.077-15.105
-            l11.078,15.105C213.504,462.834,209.476,463.842,205.447,463.842z M224.582,452.765l-15.106-11.077l15.106-11.079
-            c2.014,3.021,3.021,7.05,3.021,11.079C227.603,445.715,226.596,449.239,224.582,452.765z"/>
-          <path fill="#FFFFFF" d="M413.908,394.858c-25.679,0-46.827,21.147-46.827,46.829c0,25.679,21.148,46.827,46.827,46.827
-            c25.681,0,46.829-21.148,46.829-46.827C460.737,416.006,439.589,394.858,413.908,394.858z M413.908,419.531
-            c4.029,0,7.555,1.008,11.077,3.021l-11.077,15.105l-11.077-15.105C405.853,420.539,409.88,419.531,413.908,419.531z
-             M391.753,441.688c0-4.029,1.007-7.555,3.022-11.079l15.104,11.079l-15.104,11.077C392.76,449.239,391.753,445.715,391.753,441.688
-            z M413.908,463.842c-4.028,0-7.553-1.008-11.077-3.021l11.077-15.105l11.077,15.105
-            C421.463,462.834,417.938,463.842,413.908,463.842z M433.043,452.765l-15.105-11.077l15.105-11.079
-            c2.014,3.021,3.021,7.05,3.021,11.079C436.064,445.715,434.554,449.239,433.043,452.765z"/>
-          <path fill="#FFFFFF" d="M365.066,163.235c1.511,4.028,5.036,7.049,9.566,7.049c1.008,0,2.015,0,3.021-0.504
-            c5.036-1.511,8.058-7.049,6.547-12.588l-12.59-38.772c-1.509-5.035-7.048-8.056-12.588-6.545c-5.034,1.51-8.056,7.049-6.545,12.588
-            L365.066,163.235z"/>
-          <path fill="#FFFFFF" d="M446.134,189.922c2.016,3.021,5.036,5.035,8.561,5.035c1.511,0,3.524-0.503,5.035-1.51l37.765-22.659
-            c4.532-3.021,6.043-9.063,3.525-13.595s-9.063-6.042-13.595-3.524l-37.766,22.658C445.128,179.348,443.617,185.391,446.134,189.922
-            z"/>
-          <path fill="#FFFFFF" d="M414.916,176.327c1.008,0.504,2.518,0.504,3.525,0.504c4.027,0,7.552-2.518,9.062-6.546l17.12-45.318
-            c2.015-5.035-0.504-11.078-6.042-12.588c-5.036-2.014-11.078,0.503-12.589,6.042l-17.119,45.318
-            C406.859,168.774,409.88,174.312,414.916,176.327z"/>
-        </g>
-      </symbol>
-      <symbol id="icon-tasks" viewBox="0 0 640 640" >
-        <circle cx="320" cy="320" r="320"/>
-        <g>
-          <path fill="#FFFFFF" d="M274.875,242.986c-16.846,0-30.082-13.236-30.082-30.083s13.236-30.083,30.082-30.083h208.176
-            c16.846,0,30.082,13.236,30.082,30.083s-13.236,30.083-30.082,30.083H274.875z"/>
-          <circle fill="#FFFFFF" cx="158.153" cy="211.7" r="31.286"/>
-          <path fill="#FFFFFF" d="M274.875,351.285c-16.846,0-30.082-13.236-30.082-30.082c0-16.847,13.236-30.084,30.082-30.084h208.176
-            c16.846,0,30.082,13.237,30.082,30.084c0,16.846-13.236,30.082-30.082,30.082H274.875z"/>
-          <circle fill="#FFFFFF" cx="158.153" cy="319.999" r="31.286"/>
-          <path fill="#FFFFFF" d="M274.875,459.586c-16.846,0-30.082-13.238-30.082-30.084s13.236-30.082,30.082-30.082h208.176
-            c16.846,0,30.082,13.236,30.082,30.082s-13.236,30.084-30.082,30.084H274.875z"/>
-          <circle fill="#FFFFFF" cx="158.153" cy="428.3" r="31.286"/>
-        </g>
-      </symbol>
-    </svg>
-		
+      <div class="form-group text-center">
+        <div class="btn-group">
+          <button
+            class="btn btn-default"
+            ng-click="chartController.showAll()">
+            All
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="chartController.changeDate(5, 'years')">
+            5y
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="chartController.changeDate(1, 'years')">
+            1y
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="chartController.changeDate(6, 'months')">
+            6m
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="chartController.changeDate(3, 'months')">
+            3m
+          </button>
+          <button
+            class="btn btn-default"
+            ng-click="chartController.changeDate(1, 'months')">
+            1m
+          </button>
+        </div>
+      </div>
+
+    </div>
 	</body>
 </html>
