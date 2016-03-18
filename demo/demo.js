@@ -334,12 +334,8 @@
     }
 
     function changeDateForm(dateRangeForm) {
-      if (dateRangeForm && dateRangeForm.from) {
-        vm.dateRange.from = new Date(dateRangeForm.from);
-      }
-      if (dateRangeForm && dateRangeForm.to) {
-        vm.dateRange.to = new Date(dateRangeForm.to);
-      }
+      vm.dateRange.from =  (dateRangeForm && dateRangeForm.from) ? new Date(dateRangeForm.from) : '';
+      vm.dateRange.to =    (dateRangeForm && dateRangeForm.to)   ? new Date(dateRangeForm.to)   : '';
     }
 
     function changeDate(amount, unit) {
