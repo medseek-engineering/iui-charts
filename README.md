@@ -7,5 +7,9 @@ Influence Health Chart directives
 
 ## Changelog
 
+### 1.0.1
+- Create Chart Component (MONA-96)
+- Display Events in the chart component (MONA-103)
+
 ### 1.0.0
 - creation of chart directive repo
