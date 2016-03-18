@@ -1,11 +1,3 @@
-.symbol-defs {
-  display: none;
-}
-
-.chart {
-  display: block;
-}
-
 $metricElements: (
   1: $sg_bashful_blue,
   2: $sg_teal_primary,
@@ -18,14 +10,8 @@ $metricElements: (
   9: $sg_granny_smith_green
 );
 
-// styling charts based on index
-@each $elementNumber, $color in $metricElements {
-  .metric-element-#{$elementNumber}-event {
-    fill: $color;
-  }
-  .metric-element-#{$elementNumber}-trend {
-    stroke: $color;
-  }
+.chart {
+  display: block;
 }
 
 
@@ -33,7 +19,7 @@ $metricElements: (
 
 .tick {
   > text {
-    font-size: 10px;
+    font-size: 8px;
     fill: $sg_light_grey;
     font-family: $base-font-family;
   }
@@ -56,15 +42,14 @@ $metricElements: (
 
 .chart-path {
   fill: none;
+  stroke: $sg_light_grey;
   stroke-width: 2;
   opacity: 1;
 }
 
-// turning off shadow for now
-// .chart-circle,
-// .chart-icon {
-//   filter: url(#chart_dropShadow);
-// }
+.chart-circle {
+  fill: $sg_light_grey;
+}
 
 .chart-line {
   stroke-width: 1;
@@ -74,6 +59,17 @@ $metricElements: (
 .chart-overlay {
   stroke-width: 0px;
   fill-opacity: 0;
+}
+
+
+// styling chart elements based on index
+@each $elementNumber, $color in $metricElements {
+  .metric-element-#{$elementNumber}-event {
+    fill: $color;
+  }
+  .metric-element-#{$elementNumber}-trend {
+    stroke: $color;
+  }
 }
 
 

@@ -7,6 +7,9 @@ Influence Health Chart directives
 
 ## Changelog
 
+### 1.0.2
+- Zoom features (MONA-98)
+
 ### 1.0.1
 - Create Chart Component (MONA-96)
 - Display Events in the chart component (MONA-103)
