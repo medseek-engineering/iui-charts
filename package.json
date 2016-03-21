@@ -1,6 +1,6 @@
 {
   "name": "iui-charts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Influence Health Chart Angular Directives",
   "main": "./lib/index.js",
   "private": false,

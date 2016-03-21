@@ -7,6 +7,9 @@ Influence Health Chart directives
 
 ## Changelog
 
+### 1.0.3
+- Performance improvements for apps using `conf.client.head.addlPathedScripts`
+
 ### 1.0.2
 - Zoom features (MONA-98)
 
